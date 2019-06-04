@@ -1,0 +1,38 @@
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\bin\Debug\EP.exe.config
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\obj\Debug\EP.EP.resources
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\obj\Debug\EP.csproj.GenerateResource.Cache
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\bin\Debug\EP.exe
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\bin\Debug\EP.pdb
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\obj\Debug\EP.exe
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\obj\Debug\EP.pdb
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EPEx\obj\Debug\EP.csprojResolveAssemblyReference.cache
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\obj\Debug\EP.csprojAssemblyReference.cache
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\obj\Debug\EP.EP.resources
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\obj\Debug\EP.csproj.GenerateResource.cache
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\obj\Debug\EP.csproj.CoreCompileInputs.cache
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\obj\Debug\EP.exe
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\bin\Debug\EP.exe.config
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\bin\Debug\EP.exe
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\bin\Debug\EP.pdb
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\EDA\obj\Debug\EP.pdb
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EDA\bin\Debug\EP.exe.config
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EDA\obj\Debug\EP.exe
+C:\Users\Lucas\Dropbox\Faculdade\ExQuebraCabeça 2.0\EDA\obj\Debug\EP.pdb
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\bin\Debug\EP.exe.config
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\bin\Debug\EP.exe
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\bin\Debug\EP.pdb
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\obj\Debug\EP.csprojAssemblyReference.cache
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\obj\Debug\EP.EP.resources
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\obj\Debug\EP.csproj.GenerateResource.cache
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\obj\Debug\EP.csproj.CoreCompileInputs.cache
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\obj\Debug\EP.exe
+D:\5 sem\Estrutura de dados 2\projeto 3 - quebra cabeça\Astar\obj\Debug\EP.pdb
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\bin\Debug\EP.exe.config
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\bin\Debug\EP.exe
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\bin\Debug\EP.pdb
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\obj\Debug\EP.csprojAssemblyReference.cache
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\obj\Debug\EP.EP.resources
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\obj\Debug\EP.csproj.GenerateResource.cache
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\obj\Debug\EP.csproj.CoreCompileInputs.cache
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\obj\Debug\EP.exe
+C:\Users\thiag\Documents\Thiago\Faculdade\EDA\Astar\obj\Debug\EP.pdb

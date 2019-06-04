@@ -1,0 +1,156 @@
+using System;
+using System.Collections;
+using System.Diagnostics;
+using System.Collections.Generic;
+using ProjetoGrafos.DataStructure;
+
+namespace EP
+{
+    /// <summary>
+    /// EPAgent - searchs solution for the eight puzzle problem
+    /// </summary>
+    public class EightPuzzle : Graph
+    {
+        private int[] initState;
+        private int[] target;
+
+        /// <summary>
+        /// Creating the agent and setting the initialstate plus target
+        /// </summary>
+        /// <param name="InitialState"></param>
+        public EightPuzzle(int[] InitialState, int[] Target)
+        {
+            initState = InitialState;
+            target = Target;
+        }
+
+        /// <summary>
+        /// Accessor for the solution
+        /// </summary>
+        public int[] GetSolution()
+        {
+            Graph g = new Graph();
+            return FindSolution();
+        }
+
+        /// <summary>
+        /// Função principal de busca
+        /// </summary>
+        /// <returns></returns>
+        private int[] FindSolution()
+        {
+            Node n = new Node("0", initState, 0);
+            Queue<Node> fila = new Queue<Node>();
+            fila.Enqueue(n);
+            while(fila.Count != 0)
+            {
+                n = fila.Dequeue();
+                if (TargetFound(n))
+                {
+                    return BuildAnswer(n);
+                }
+                GetSucessors(n).ForEach(no => fila.Enqueue(no));
+            }
+            return null;
+        }
+
+        private List<Node> GetSucessors(Node n)
+        {
+            List<Node> resp = new List<Node>();
+            for(int i = 0; i < 9; i++)
+            {
+                if(n.Info[i] == 0)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            resp.Add(createState(n,i,1));
+                            resp.Add(createState(n, i, 3));
+                            break;
+                        case 1:
+                            resp.Add(createState(n, i, 0));
+                            resp.Add(createState(n, i, 2));
+                            resp.Add(createState(n, i, 4));
+                            break;
+                        case 2:
+                            resp.Add(createState(n, i, 1));
+                            resp.Add(createState(n, i, 5));
+                            break;
+                        case 3:
+                            resp.Add(createState(n, i, 0));
+                            resp.Add(createState(n, i, 4));
+                            resp.Add(createState(n, i, 6));
+                            break;
+                        case 4:
+                            resp.Add(createState(n, i, 1));
+                            resp.Add(createState(n, i, 3));
+                            resp.Add(createState(n, i, 5));
+                            resp.Add(createState(n, i, 7));
+                            break;
+                        case 5:
+                            resp.Add(createState(n, i, 2));
+                            resp.Add(createState(n, i, 4));
+                            resp.Add(createState(n, i, 8));
+                            break;
+                        case 6:
+                            resp.Add(createState(n, i, 3));
+                            resp.Add(createState(n, i, 7));
+                            break;
+                        case 7:
+                            resp.Add(createState(n, i, 4));
+                            resp.Add(createState(n, i, 6));
+                            resp.Add(createState(n, i, 8));
+                            break;
+                        case 8:
+                            resp.Add(createState(n, i, 5));
+                            resp.Add(createState(n, i, 7));
+                            break;
+
+                    }
+                }
+            }
+            return resp;
+        }
+
+        private Node createState(Node n,int indexEmpty,int indexChange)
+        {
+            int[] newState = new int[n.Info.Length];
+            for (int i = 0; i < 9; i++)
+            {
+                if(i == indexEmpty)
+                {
+                    newState[i] = n.Info[indexChange];
+                    newState[indexChange] = n.Info[i];
+
+                }
+                else
+                {
+                    newState[i] = n.Info[i];
+                }
+            }
+            Node resp = new Node(n.Name + ',' + n.Info[indexChange], newState, 0);
+            n.Edges.Add(new Edge(n, resp));
+            return resp;
+        }
+        
+        private int[] BuildAnswer(Node n)
+        {
+            string[] s = new string[] { n.Name };
+            int[] resp = Array.ConvertAll<string, int>(s, int.Parse);
+            resp = Array.FindAll(resp,isNotFour);
+            //Array.Reverse(resp);
+            return resp;
+        }
+
+        private bool isNotFour(int n)
+        {
+            return n != 0;
+        }
+
+        private bool TargetFound(Node n)
+        {
+            return n.Info.Equals(target);
+        }
+    }
+}
+
