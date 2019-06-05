@@ -222,9 +222,10 @@ namespace EP
                     y1 = a % tam;
                     y2 = count % tam;
                     distance += Math.Abs(x1 - x2) + Math.Abs(y1 - y2);
-                    count++;
+                    
 
                 }
+                count++;
             }
             return distance;
         }
