@@ -13,7 +13,7 @@ namespace EP
     {
         private int[] initState;
         private int[] target;
-        private Graph solution = new Graph();
+        private HashSet<string> estados;
 
         /// <summary>
         /// Creating the agent and setting the initialstate plus target
@@ -23,7 +23,7 @@ namespace EP
         {
             initState = InitialState;
             target = Target;
-            
+
         }
 
         /// <summary>
@@ -40,9 +40,10 @@ namespace EP
         /// <returns></returns>
         private int[] FindSolution()
         {
+            estados = new HashSet<string>();
             PriorityQueue pqueue = new PriorityQueue();
             List<Node> temp = new List<Node>();
-            Node no = new Node("@",initState,0);
+            Node no = new Node("@", initState, 0);
             pqueue.Add(no);
             while (!pqueue.IsEmpty())
             {
@@ -50,7 +51,7 @@ namespace EP
                 if (TargetFound(no))
                     return BuildAnswer(no);
                 temp = GetSucessors(no);
-                foreach(Node n in temp)
+                foreach (Node n in temp)
                 {
                     pqueue.Add(n);
                 }
@@ -60,92 +61,92 @@ namespace EP
 
         private List<Node> GetSucessors(Node n)
         {
-            int [] estado = (int[])n.Info;
+            int[] estado = (int[])n.Info;
             List<int> lista = new List<int>();
             foreach (int i in estado)
                 lista.Add(i);
             List<Node> nos = new List<Node>();
             double tam = Math.Sqrt(lista.Count);
-            int index = lista.IndexOf(0), num = 0;
+            int index = lista.IndexOf(0);//,num = 0;
 
-            if ((index+1) <= tam)
-                num += 1;
-            if ((index+1) % tam == 0)
-                num += 2;
-            if ((index+1) > lista.Count - tam)
-                num += 4;
-            if ((index+1) == 1 || (index+1) % tam == 1)
-                num += 8;
+            if ((index + 1) > tam)
+                createState(nos, n, index, (index - Convert.ToInt32(tam)));
+            if ((index + 1) % tam != 0)
+                createState(nos, n, index, index + 1);
+            if ((index + 1) <= lista.Count - tam)
+                createState(nos, n, index, (index + Convert.ToInt32(tam)));
+            if ((index + 1) % tam != 1)
+                createState(nos, n, index, index - 1);
 
-            switch(num)
-            {
-                case 0:
-                    if(checkState(n,index + 1))
-                        nos.Add(createState(n,index,index+1));
-                    if (checkState(n, index - 1))
-                        nos.Add(createState(n, index, index - 1));
-                    if (checkState(n, index - Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, (index - Convert.ToInt32(tam))));
-                    if (checkState(n, index + Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, (index + Convert.ToInt32(tam))));
-                    break;
-                case 1:
-                    if (checkState(n, index + 1))
-                        nos.Add(createState(n,index,index+1));
-                    if (checkState(n, index - 1))
-                        nos.Add(createState(n, index, index - 1));
-                    if (checkState(n, index + Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
-                    break;
-                case 2:
-                    if (checkState(n, index - 1))
-                        nos.Add(createState(n, index, index - 1));
-                    if (checkState(n, index - Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
-                    if (checkState(n, index + Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
-                    break;
-                case 3:
-                    if (checkState(n, index - 1))
-                        nos.Add(createState(n, index, index - 1));
-                    if (checkState(n, index + Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
-                    break;
-                case 4:
-                    if (checkState(n, index + 1))
-                        nos.Add(createState(n, index, index + 1));
-                    if (checkState(n, index - 1))
-                        nos.Add(createState(n, index, index - 1));
-                    if (checkState(n, index - Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
-                    break;
-                case 6:
-                    if (checkState(n, index - 1))
-                        nos.Add(createState(n, index, index - 1));
-                    if (checkState(n, index - Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
-                    break;
-                case 8:
-                    if (checkState(n, index + 1))
-                        nos.Add(createState(n, index, index + 1));
-                    if (checkState(n, index - Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
-                    if (checkState(n, index + Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
-                    break;
-                case 9:
-                    if (checkState(n, index + 1))
-                        nos.Add(createState(n, index, index + 1));
-                    if (checkState(n, index + Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
-                    break;
-                case 12:
-                    if (checkState(n, index + 1))
-                        nos.Add(createState(n, index, index + 1));
-                    if (checkState(n, index - Convert.ToInt32(tam)))
-                        nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
-                    break;
-            }
+            //switch (num)
+            //{
+            //    case 0:
+            //        if(checkState(n,index + 1))
+            //            nos.Add(createState(n,index,index+1));
+            //        if (checkState(n, index - 1))
+            //            nos.Add(createState(n, index, index - 1));
+            //        if (checkState(n, index - Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, (index - Convert.ToInt32(tam))));
+            //        if (checkState(n, index + Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, (index + Convert.ToInt32(tam))));
+            //        break;
+            //    case 1:
+            //        if (checkState(n, index + 1))
+            //            nos.Add(createState(n,index,index+1));
+            //        if (checkState(n, index - 1))
+            //            nos.Add(createState(n, index, index - 1));
+            //        if (checkState(n, index + Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
+            //        break;
+            //    case 2:
+            //        if (checkState(n, index - 1))
+            //            nos.Add(createState(n, index, index - 1));
+            //        if (checkState(n, index - Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
+            //        if (checkState(n, index + Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
+            //        break;
+            //    case 3:
+            //        if (checkState(n, index - 1))
+            //            nos.Add(createState(n, index, index - 1));
+            //        if (checkState(n, index + Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
+            //        break;
+            //    case 4:
+            //        if (checkState(n, index + 1))
+            //            nos.Add(createState(n, index, index + 1));
+            //        if (checkState(n, index - 1))
+            //            nos.Add(createState(n, index, index - 1));
+            //        if (checkState(n, index - Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
+            //        break;
+            //    case 6:
+            //        if (checkState(n, index - 1))
+            //            nos.Add(createState(n, index, index - 1));
+            //        if (checkState(n, index - Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
+            //        break;
+            //    case 8:
+            //        if (checkState(n, index + 1))
+            //            nos.Add(createState(n, index, index + 1));
+            //        if (checkState(n, index - Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
+            //        if (checkState(n, index + Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
+            //        break;
+            //    case 9:
+            //        if (checkState(n, index + 1))
+            //            nos.Add(createState(n, index, index + 1));
+            //        if (checkState(n, index + Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index + Convert.ToInt32(tam)));
+            //        break;
+            //    case 12:
+            //        if (checkState(n, index + 1))
+            //            nos.Add(createState(n, index, index + 1));
+            //        if (checkState(n, index - Convert.ToInt32(tam)))
+            //            nos.Add(createState(n, index, index - Convert.ToInt32(tam)));
+            //        break;
+            //}
             return nos;
 
         }
@@ -164,10 +165,12 @@ namespace EP
             return false;
         }
 
-        private Node createState(Node n, int indexEmpty, int indexChange)
-        {          
-            int[] newState = new int[((int []) n.Info).Length];
-            for (int i = 0; i < ((int[])n.Info).Length; i++)
+        private void createState(List<Node> nos, Node n, int indexEmpty, int indexChange)
+        {
+            int[] newState = (int[])((int[])n.Info).Clone();
+            newState[indexEmpty] = newState[indexChange];
+            newState[indexChange] = 0;
+            /*for (int i = 0; i < ((int[])n.Info).Length; i++)
             {
                 if (i == indexEmpty)
                 {
@@ -178,18 +181,23 @@ namespace EP
                 {
                     newState[i] = ((int[])n.Info)[i];
                 }
+            }*/
+            string id = String.Join(",", newState);
+            if (!estados.Contains(id))
+            {
+                Node resp = new Node(((int[])n.Info)[indexChange].ToString(), newState, 0);
+                //n.Edges.Add(new Edge(n, resp));
+                resp.parent = n;
+                resp.grade = ManhattanDistance((int[])n.Info);
+                estados.Add(id);
+                nos.Add(resp);
             }
-            Node resp = new Node(((int[])n.Info)[indexChange].ToString(), newState, n.Nivel + 1);
-            n.Edges.Add(new Edge(n, resp));
-            resp.parent = n;
-            resp.grade = ManhattanDistance((int[])n.Info);
-            return resp;
         }
 
         private int[] BuildAnswer(Node n)
         {
             List<int> resp = new List<int>();
-            while(n.Name != "@")
+            while (n.Name != "@")
             {
                 resp.Add(int.Parse(n.Name));
                 n = n.parent;
@@ -203,17 +211,17 @@ namespace EP
             int count = 0;
             foreach (int i in (int[])n.Info)
             {
-                if(i != target[count])
+                if (i != target[count])
                     return false;
                 count++;
             }
             return true;
         }
 
-        private int ManhattanDistance(int [] estado)
+        private int ManhattanDistance(int[] estado)
         {
             int tam = Convert.ToInt32(Math.Sqrt(estado.Length)), count = 0, distance = 0, x1, x2, y1, y2;
-            foreach(int a in estado)
+            foreach (int a in estado)
             {
                 if (a != 0)
                 {
@@ -222,8 +230,6 @@ namespace EP
                     y1 = a % tam;
                     y2 = count % tam;
                     distance += Math.Abs(x1 - x2) + Math.Abs(y1 - y2);
-                    
-
                 }
                 count++;
             }
